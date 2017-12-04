@@ -1,0 +1,16 @@
+input[type='text'] {
+    display: inline-block;
+    height: 30px;
+    margin: 0;
+    padding-left: 5px;
+}
+
+.check {
+    color: #00ff00;
+    margin-left: 10px;
+}
+
+.error {
+    color: #ff0000;
+    margin-left: 10px;
+}

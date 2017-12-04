@@ -5,8 +5,10 @@ class InputText extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
         this.state = {
-                        isValid: false
+                        isValid: false,
+                        isTouched: false
                     };
     }
     handleChange(value) {
@@ -16,13 +18,16 @@ class InputText extends Component {
                         isValid: isValid
                     });
     }
+    handleBlur() {
+        this.setState({isTouched: true});
+    }
     render() {
         return (
             <div>
                 <label htmlFor="txtUsername">Minimum of 6 characters&nbsp;</label>
-                <input type="text" name="txtUsername" id="txtUsername" onChange={this.handleChange} placeholder="Username" />
-                {this.state.isValid && <span className="glyphicon glyphicon-ok check"></span>}
-                {!this.state.isValid && <span className="glyphicon glyphicon-remove error"></span>}
+                <input type="text" name="txtUsername" id="txtUsername" onChange={this.handleChange} onBlur={this.handleBlur} placeholder="Username" />
+                {(this.state.isValid && this.state.isTouched) && <span className="glyphicon glyphicon-ok check"></span>}
+                {(!this.state.isValid && this.state.isTouched) && <span className="glyphicon glyphicon-remove error"></span>}
             </div>
         )
     }

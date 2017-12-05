@@ -3,6 +3,7 @@
     width: 266px;
     margin: 0;
     padding-left: 5px;
+    padding-right: 45px;
 }
 
 .input--vin-search::placeholder {
@@ -23,4 +24,34 @@
 
 .disabled {
     cursor: not-allowed !important;
+}
+
+.results--panel {
+    position: absolute;
+    background-color: white;
+    min-height: 30px;
+    padding: 0;
+    margin: 0;
+    width: 266px;
+    border: 1px solid black;
+    list-style: none;
+}
+
+.results--panel li {
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+    border-bottom: 1px solid black;
+    padding-left: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.results--panel li:hover {
+    background-color: black;
+    color: white;
+}
+
+.results--panel li:last-child {
+    border-bottom-style: none;
 }

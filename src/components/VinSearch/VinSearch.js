@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './VinSearch.css';
+import CarInfo from './../CarInfo/CarInfo';
 
 class VinSearch extends Component {
     
@@ -8,7 +9,8 @@ class VinSearch extends Component {
         this.state = {
             searchfFieldValue: '',
             disableSearchButton: true,
-            showResults: false
+            showResults: false,
+            chosenCar: []
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -25,6 +27,20 @@ class VinSearch extends Component {
             {
                 id: 'ZFHDOS13ODH415641',
                 value: 'ZFHDOS13ODH415641'
+            }
+        ];
+        this.cars = [
+            {
+                vin: 'KFDH45LK3EH415641',
+                model: 'Freelander 2.2L TD4 Diesel AWD'
+            },
+            {
+                vin: 'SALFA2AC9EH415641',
+                model: 'Freelander 2.0L TD4 Diesel AWD'
+            },
+            {
+                vin: 'ZFHDOS13ODH415641',
+                model: 'Freelander 1.8L TD4 Diesel AWD'
             }
         ];
         this.searchResults = null;
@@ -48,15 +64,24 @@ class VinSearch extends Component {
             this.searchResults = <li>No VIN found!</li>
         }
         this.setState({
+            chosenCar: [],
             showResults: true
         });
     }
 
     handleVinClick(e) {
-        this.setState({
-            searchfFieldValue: e.target.innerHTML,
-            showResults: false
-        });
+        for(let i=0; i<this.cars.length; i++) {
+            if(this.cars[i].vin.toLowerCase() === e.target.innerHTML.toLowerCase()) {
+                let aux = [];
+                aux.push(this.cars[i]);
+                this.setState({
+                    chosenCar: aux,
+                    searchfFieldValue: e.target.innerHTML,
+                    showResults: false
+                });
+                break;
+            }
+        }
     }
 
     handleChange(e) {
@@ -87,6 +112,7 @@ class VinSearch extends Component {
                     {(this.state.showResults) && <ul className="results--panel">{this.searchResults}</ul>}
                     <button className={(this.state.disableSearchButton) ? 'glyphicon glyphicon-search btnVinSearch disabled' : 'glyphicon glyphicon-search btnVinSearch'} onClick={this.handleClick} disabled={this.state.disableSearchButton}></button>
                 </div>
+                {this.state.chosenCar.length > 0 && <CarInfo carInfo={this.state.chosenCar} />}
             </div>
         )
     }

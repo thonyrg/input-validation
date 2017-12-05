@@ -1,0 +1,29 @@
+.car-info {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 200px;
+    padding: 20px;
+    background-color: lightgray;
+    margin-top: 20px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    box-sizing: border-box;
+}
+
+.car-icon {
+    display: block;
+    width: 100px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 5rem;
+    float: left;
+}
+
+.car-model {
+    display: block;
+    height: 60px;
+    font-size: 2rem;
+    font-weight: bold;
+    float: left;
+}

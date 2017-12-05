@@ -34,12 +34,12 @@ class VinSearch extends Component {
     handleClick() {
         let arrVins = [];
         for(let i=0; i<this.vins.length;i++) {
-            if(this.vins[i].value.indexOf(this.state.searchfFieldValue) > -1) {
+            if(this.vins[i].value.toLowerCase().indexOf(this.state.searchfFieldValue.toLowerCase()) > -1) {
                 arrVins.push(this.vins[i]);
             }
         }
         if(arrVins.length > 0) {
-            this.searchResults = this.vins.map((vin)=>
+            this.searchResults = arrVins.map((vin)=>
                 <li key={vin.id} onClick={this.handleVinClick}>
                     {vin.value}
                 </li>
